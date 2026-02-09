@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Mono } from "next/font/google";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from '@clerk/nextjs'
 import "./globals.css";
-import { dark } from "@clerk/themes";
-
-import { ThemeProvider } from "@/components/theme-provider";
-import { Button } from "@/components/ui/button";
+import Providers from "@/components/providers"
 
 const interSans = Inter({
   variable: "--font-intro-sans",
@@ -36,38 +25,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider
-      appearance={{
-        theme: dark
-      }}
-    >
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${interSans.variable} ${plexMono.variable} antialiased`}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <header className="flex justify-end items-center p-4 gap-4 h-16">
-              <SignedOut>
-                <SignInButton />
-                <SignUpButton>
-                  <Button className="bg-[#6c47ff] hover:bg-[#5c37ef] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                    Sign Up
-                  </Button>
-                </SignUpButton>
-              </SignedOut>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
-            </header>
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${interSans.variable} ${plexMono.variable} antialiased flex flex-col flex-1 min-h-screen`}
+      >
+        <Providers>
+          {children}
+        </Providers>
+      </body>
+    </html>
   );
 }
