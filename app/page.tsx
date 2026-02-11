@@ -1,7 +1,6 @@
 'use client'
 
 import { useMutation, useQuery } from "convex/react";
-import Image from "next/image";
 import { api } from "@/convex/_generated/api"
 import { Button } from "@/components/ui/button";
 
