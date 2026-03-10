@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono } from "next/font/google";
+import { Inter, IBM_Plex_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers"
 
@@ -13,6 +13,12 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"]
 });
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700"]
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,7 +34,7 @@ export default function RootLayout({
 
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${interSans.variable} ${plexMono.variable} antialiased flex flex-col flex-1 min-h-screen`}
+        className={`${interSans.variable} ${plexMono.variable} antialiased flex flex-col flex-1 min-h-screen ${poppins.variable}`}
       >
         <Providers>
           {children}

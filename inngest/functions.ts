@@ -37,7 +37,12 @@ export const background = inngest.createFunction(
             async () => {
                 return await generateText({
                     model: google('gemini-2.5-flash'),
-                    prompt: `context: ${scrapedContent} \n\n prompt:${event.data.prompt}`
+                    prompt: `context: ${scrapedContent} \n\n prompt:${event.data.prompt}`,
+                    experimental_telemetry: {
+                        isEnabled: true,
+                        recordInputs: true,
+                        recordOutputs: true,
+                    },
                 })
             }
         )
